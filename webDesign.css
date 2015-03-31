@@ -80,12 +80,6 @@ textarea:focus, input:focus{
 	width:100%;
 	display:block;
 }
-/*.inputText{
-	/*float:left;/
-	width:99%;
-	height:30px;
-	
-}*/
 .inputForm{
 	overflow:auto;
 }
@@ -150,9 +144,8 @@ textarea:focus, input:focus{
 		width: 100%;
 	}
 	.fullDiv textarea{
-		width:1030px;	
+		width:99%;	
 		-webkit-box-sizing: border-box;
-		
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
@@ -224,6 +217,9 @@ textarea:focus, input:focus{
 	}
 }
 @media (max-width:599px){
+	input {
+		width: 99%;
+	}
 	#bottomLeft{
 		border-right: 1px solid #000076;
 		border-bottom: 1px solid #000076;
@@ -234,6 +230,15 @@ textarea:focus, input:focus{
 	#content{ 
 		margin:20px;
 		width:auto;
+	}
+	.fullDiv{
+		width: 100%;
+	}
+	.fullDiv textarea{
+		width:100%;
+	}
+	.halfDiv{
+		width: 100%;
 	}
 	#headerNav{
 		width:100%;
@@ -249,9 +254,6 @@ textarea:focus, input:focus{
 		padding:0;
 		width:calc(50% - 1px);
 		text-align:center;
-	}
-	.inputText{
-		width:100%;
 	}
 	#navigation {
 		height:auto;

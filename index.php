@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Name of Website</title>
+<title>Name of Website - Home</title>
 <link rel="stylesheet" href="webDesign.css" />
 <script type="text/javascript" src="javascript/jquery.js"></script>
 <!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->

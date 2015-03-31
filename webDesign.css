@@ -22,7 +22,9 @@ header{
 	height:60px;
 }
 input, textarea{
-border: 1px solid lightgray;
+	border: 1px solid lightgray;
+	font-size: 18px;
+	line-height: 20px;
 }
 input{
 	height: 30px;
@@ -34,6 +36,7 @@ select{
 }
 textarea:focus, input:focus{
     outline: 0;
+
 }
 
 /****************/
@@ -60,10 +63,13 @@ textarea:focus, input:focus{
 	float:left;
 }
 .fullDiv textarea{
-	width:1030px;	
+	width:1030px;
+	max-width:1030px;	
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	min-height: 150px;
+
 }
 #headerNav {
 	float:left;
@@ -144,7 +150,8 @@ textarea:focus, input:focus{
 		width: 100%;
 	}
 	.fullDiv textarea{
-		width:99%;	
+		max-width:99%;
+		width:99%	
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
@@ -235,10 +242,14 @@ textarea:focus, input:focus{
 		width: 100%;
 	}
 	.fullDiv textarea{
-		width:100%;
+		max-width:99%;
+		width:99%;
 	}
 	.halfDiv{
 		width: 100%;
+	}
+	.halfDiv select{
+		height: 35px;
 	}
 	#headerNav{
 		width:100%;

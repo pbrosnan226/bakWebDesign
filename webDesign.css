@@ -34,6 +34,22 @@ input{
 select{
 	width: 100%
 }
+table {
+    border-collapse: collapse;
+    width: 100%
+}
+table, td, th {
+    border: 1px solid #0268B7;
+}
+td, th{
+	text-align: left;
+	padding: 5px 10px;
+	font-size: 12px;
+}
+th{	
+	text-transform: uppercase;
+	background-color: #1696FB;
+}
 textarea:focus, input:focus{
     outline: 0;
 

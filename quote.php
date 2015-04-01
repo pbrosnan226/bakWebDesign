@@ -1,3 +1,4 @@
+<?php include('includes/sqlConnection.php');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,27 +21,30 @@ $contactMethod = $_POST['contactMethod'];
 $websiteNotes = $_POST['websiteNotes'];
 
     if($_POST['action']=="insert"){
-        $query="INSERT INTO requestQuote (fname,lname,bname,email,phone,contactMethod,websiteNotes) VALUES ('$fname','$lname','$bname','$email','$phone','$contactMethod','$websiteNotes')";
+        $query="INSERT INTO requestQuote (fname,lname,bname,email,phone,contactMethod,websiteNotes) VALUES ('" . $fname . "','" . $lname . "','" . $bname . "','" . $email . "','" . $phone . "','" . $contactMethod . "','" . $websiteNotes . "')";
+        $result=mysqli_query($conn, $query);
+        if($result){
+            echo "IT WORKED";
+        }
         echo $query;
     } else if ($_POST['action']=="update") {
-        $query="UPDATE requestQuote SET fname='$fname',lname='$lname',bname='$bname',email='$email',phone='$phone',contactMethod='$contactMethod',websiteNotes='$websiteNotes' WHERE id='$id'";
+        $query = "UPDATE requestQuote SET fname='" . $fname . "',lname='" . $lname . "',bname='" . $bname . "',email='" . $email . "',phone='" . phoneEnter($phone) . "',contactMethod='" . $contactMethod . "',websiteNotes='" . $websiteNotes . "' WHERE id='".$_POST['id']."'";
+        $result = mysqli_query($conn, $query);
         echo $query;
     }
-   // if(isset($_GET['id'])){
-        $query="SELECT * FROM requestQuote WHERE id='$id'";
-        echo $query;
-
-        /*while ($r=mysql_fetch_array($result)) {
-            $id = $r['id'];
+    if(isset($_GET['id'])){
+        $query = "SELECT * FROM requestQuote WHERE id = '" . $id . "'";
+        $result = mysqli_query($conn,$query);
+        while ($r = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
             $fname = $r['fname'];
-            $lname= $r['lname'];
-            $bname= $r['bname'];
+            $lname = $r['lname'];
+            $bname = $r['bname'];
             $email = $r['email'];
             $phone = $r['phone'];
             $contactMethod = $r['contactMethod'];
             $websiteNotes = $r['websiteNotes'];
-        }*/
-//    }
+        }
+    }
 ?>
 
 </head>
@@ -53,7 +57,8 @@ $websiteNotes = $_POST['websiteNotes'];
         	<form method="post" action="quote.php">
                 <?php 
                 if(isset($id)){
-                    echo '<input type="hidden" name="action" value="update"/>';
+                    echo '<input type="hidden" name="action" value="update"/>
+                          <input type="hidden" name="id" value="'. $id . '"/>';
                 } else{
                     echo '<input type="hidden" name="action" value="insert"/>';
                 }
@@ -72,7 +77,7 @@ $websiteNotes = $_POST['websiteNotes'];
                         <label class="inputLabel" for="email">Email: </label>
                         	<input type="email" name="email" id="email" value="<?php echo $email;?>" />
                         <label class="inputLabel" for ="phone">Phone Number: </label>
-                            <input type="tel" name="phone" id="phone" value="<?php echo $phone;?>"/>
+                            <input type="tel" name="phone" id="phone" value="<?php echo phoneDisplay($phone);?>"/>
                         <label for="contactMethod">Prefered Contact Method</label></br>
                             <select name="contactMethod">
                                 <option value=""> -- Select Option -- </option>

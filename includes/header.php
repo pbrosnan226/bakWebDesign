@@ -11,6 +11,7 @@
         </ul>
         <div id="requestQuote">
             <a href="quote.php">Request A Quote</a>
+            <a href="view_quotes.php">View Quotes</a>
         </div>
     </div>
 </div>

@@ -3,12 +3,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Request a Quote</title>
-<link rel="stylesheet" href="webDesign.css" />
-<script type="text/javascript" src="javascript/jquery.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link href="javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/webDesign.css" />
+<script type="text/javascript">//////AUTO JUMP CODE////////
+var downStrokeField;
+function autojump(fieldName,nextFieldName,fakeMaxLength)
+{
+var myForm=document.forms[document.forms.length - 1];
+var myField=myForm.elements[fieldName];
+myField.nextField=myForm.elements[nextFieldName];
 
-<script type="text/javascript" src="javascript/mobile.js"></script>
+if (myField.maxLength == null)
+   myField.maxLength=fakeMaxLength;
+
+myField.onkeydown=autojump_keyDown;
+myField.onkeyup=autojump_keyUp;
+}
+
+function autojump_keyDown()
+{
+this.beforeLength=this.value.length;
+downStrokeField=this;
+}
+
+function autojump_keyUp()
+{
+if (
+   (this == downStrokeField) && 
+   (this.value.length > this.beforeLength) && 
+   (this.value.length >= this.maxLength)
+   )
+   this.nextField.focus();
+downStrokeField=null;
+}
+//////END AUTO JUMP CODE////////</script>
 <?php
 
 $id = $_GET['id'];
@@ -16,31 +46,37 @@ $fname = $_POST['fname'];
 $lname= $_POST['lname'];
 $bname= $_POST['bname'];
 $email = $_POST['email'];
-$phone = $_POST['phone'];
+$areaCode=$_POST['areaCode'];
+$firstDigits=$_POST['firstDigits'];
+$secondDigits=$_POST['secondDigits'];
 $contactMethod = $_POST['contactMethod'];
 $websiteNotes = $_POST['websiteNotes'];
 
     if($_POST['action']=="insert"){
-        $query="INSERT INTO requestQuote (fname,lname,bname,email,phone,contactMethod,websiteNotes) VALUES ('" . $fname . "','" . $lname . "','" . $bname . "','" . $email . "','" . $phone . "','" . $contactMethod . "','" . $websiteNotes . "')";
+        $query="INSERT INTO requestQuote (fname,lname,bname,email,areaCode,firstDigits,secondDigits,contactMethod,websiteNotes) VALUES ('" . $fname . "','" . $lname . "','" . $bname . "','" . $email . "','" . $areaCode . "','" . $firstDigits . "','" . $secondDigits . "','" . $contactMethod . "','" . $websiteNotes . "')";
         $result=mysqli_query($conn, $query);
         if($result){
             echo "IT WORKED";
+            mail('pbrosnan622@me.com', "Website Request", 'message', 'From: pbrosnan622@me.com','-f pbrosnan622@me.com');
         }
         echo $query;
     } else if ($_POST['action']=="update") {
-        $query = "UPDATE requestQuote SET fname='" . $fname . "',lname='" . $lname . "',bname='" . $bname . "',email='" . $email . "',phone='" . phoneEnter($phone) . "',contactMethod='" . $contactMethod . "',websiteNotes='" . $websiteNotes . "' WHERE id='".$_POST['id']."'";
+        $query = "UPDATE requestQuote SET fname='" . $fname . "',lname='" . $lname . "',bname='" . $bname . "',email='" . $email . "',areaCode='" . $areaCode . "',firstDigits='" . $firstDigits  . "',secondDigits='" . $secondDigits . "',contactMethod='" . $contactMethod . "',websiteNotes='" . $websiteNotes . "' WHERE id='".$_POST['id']."'";
         $result = mysqli_query($conn, $query);
         echo $query;
     }
     if(isset($_GET['id'])){
         $query = "SELECT * FROM requestQuote WHERE id = '" . $id . "'";
+        echo $query; 
         $result = mysqli_query($conn,$query);
         while ($r = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
             $fname = $r['fname'];
             $lname = $r['lname'];
             $bname = $r['bname'];
             $email = $r['email'];
-            $phone = $r['phone'];
+            $areaCode = $r['areaCode'];
+            $firstDigits = $r['firstDigits'];
+            $secondDigits = $r['secondDigits'];
             $contactMethod = $r['contactMethod'];
             $websiteNotes = $r['websiteNotes'];
         }
@@ -54,7 +90,7 @@ $websiteNotes = $_POST['websiteNotes'];
 <body>
     <div id="container">
         <div id="content">
-        	<form method="post" action="quote.php">
+        	<form method="post" name="form1" action="quote.php">
                 <?php 
                 if(isset($id)){
                     echo '<input type="hidden" name="action" value="update"/>
@@ -77,7 +113,7 @@ $websiteNotes = $_POST['websiteNotes'];
                         <label class="inputLabel" for="email">Email: </label>
                         	<input type="email" name="email" id="email" value="<?php echo $email;?>" />
                         <label class="inputLabel" for ="phone">Phone Number: </label>
-                            <input type="tel" name="phone" id="phone" value="<?php echo phoneDisplay($phone);?>"/>
+                            (<input type="tel" name="areaCode" id="areaCode" maxlength=3 value="<?php echo $areaCode;?>">)-<input type="tel" name="firstDigits" id="firstDigits" maxlength=3 value="<?php echo $firstDigits;?>">-<input type="tel" name="secondDigits" id="secondDigits" maxlength=4 value="<?php echo $secondDigits;?>">
                         <label for="contactMethod">Prefered Contact Method</label></br>
                             <select name="contactMethod">
                                 <option value=""> -- Select Option -- </option>
@@ -92,9 +128,15 @@ $websiteNotes = $_POST['websiteNotes'];
                     </div>
                 </div>
             </form>
+            <SCRIPT TYPE="text/javascript">
+                autojump('areaCode', 'firstDigits', 3);
+                autojump('firstDigits', 'secondDigits', 3);
+                autojump('secondDigits', 'contactMethod', 4);
+            </SCRIPT>
         </div>
     </div>
 </body>
+
 <footer>
     <?php include('includes/footer.php');?>
 </footer>

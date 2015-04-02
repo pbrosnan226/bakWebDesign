@@ -47,15 +47,31 @@ td, th{
 	font-size: 12px;
 }
 th{	
-	text-transform: uppercase;
+	color: #FFF;
 	background-color: #1696FB;
+	text-transform: uppercase;
 }
 textarea:focus, input:focus{
     outline: 0;
 
 }
+tr:hover{
+	background-color:#FFFF9E;
+}
 
 /****************/
+#areaCode{
+	width:20%;
+}
+#firstDigits{
+	width:30%;
+}
+#secondDigits{
+	width: 33%;
+}
+#areaCode, #firstDigits, #secondDigits{
+	text-align: center;
+}
 #container{
 	background-color:#FFF;
 	width:100%;
@@ -126,6 +142,9 @@ textarea:focus, input:focus{
 }
 #navigationList{
 	float:right;
+}
+.pointer{
+	cursor: pointer;
 }
 #requestQuote{
 	float:left;
@@ -329,5 +348,6 @@ textarea:focus, input:focus{
 	}
 	#wordmark a {
 		padding:20px 10px;
+		font-size: 18px;
 	}
 }

@@ -4,11 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Name of Website - Home</title>
-<link rel="stylesheet" href="webDesign.css" />
-<script type="text/javascript" src="javascript/jquery.js"></script>
-<!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
-<script type="text/javascript" src="javascript/mobile.js"></script>
-<script type="text/javascript" src="javascript/general.js"></script>
+<link rel="stylesheet" href="css/webDesign.css" />
+
 </head>
 <header>
 	<?php include('includes/header.php');?>

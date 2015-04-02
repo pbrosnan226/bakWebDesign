@@ -90,6 +90,7 @@ $websiteNotes = $_POST['websiteNotes'];
 <body>
     <div id="container">
         <div id="content">
+            Hi <?php session_start(); echo $_SESSION['fname'];?>
         	<form method="post" name="form1" action="quote.php">
                 <?php 
                 if(isset($id)){

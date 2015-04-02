@@ -7,7 +7,7 @@
     </div>
 	<div id="navigationList">
         <ul id="headerNav">
-            <li id="topLeft"><a href="#">About Us</a></li><li id="topRight"><a href="#">Samples</a></li><li id="bottomLeft"><a href="#">Our Process</a></li><li id="bottomRight"><a href="#">Pricing</a></li>
+            <li id="topLeft"><a href="#">About Us</a></li><li id="topRight"><a href="#">Portfolio</a></li><li id="bottomLeft"><a href="#">Our Process</a></li><li id="bottomRight"><a href="#">Pricing</a></li>
         </ul>
         <div id="requestQuote">
             <a href="quote.php">Request A Quote</a>

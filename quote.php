@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Request a Quote</title>
-<link href="javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--<link href="javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 <link rel="stylesheet" href="css/webDesign.css" />
 <script type="text/javascript">//////AUTO JUMP CODE////////
 var downStrokeField;
